@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ 'PSC.FORMS.SELECT_TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p *ngIf="data.forms.length === 0">{{ 'PSC.FORMS.EMPTY' | translate }}</p>
+  <div *ngIf="data.forms.length > 0" class="psc-form-options">
+    <button
+      *ngFor="let form of data.forms"
+      mat-button
+      class="psc-form-option"
+      [class.selected]="form.id === data.selectedFormId"
+      [attr.aria-pressed]="form.id === data.selectedFormId"
+      (click)="selectForm(form)"
+    >
+      <mat-icon *ngIf="form.id === data.selectedFormId" aria-hidden="true">check</mat-icon>
+      {{ form.title }}
+    </button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button *ngIf="data.hasCurrentForm" (click)="clearForm()">{{ 'PSC.FORMS.CLEAR_LINK' | translate }}</button>
+  <button mat-button *ngIf="data.forms.length === 0" (click)="createForm()">{{ 'PSC.FORMS.CREATE' | translate }}
+  </button>
+  <button mat-button (click)="cancel()">{{ 'PSC.FORMS.CANCEL' | translate }}</button>
+</mat-dialog-actions>

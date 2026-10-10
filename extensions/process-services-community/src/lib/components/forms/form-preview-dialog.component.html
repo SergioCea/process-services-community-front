@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{ 'PSC.FORMS.PREVIEW_TITLE' | translate: {title: data.title} }}</h2>
+<mat-dialog-content>
+  <p *ngIf="!isFormReady() && !renderError()" role="status">{{ 'PSC.FORMS.PREVIEW_LOADING' | translate }}</p>
+  <p *ngIf="renderError()" role="alert">{{ renderError() }}</p>
+  <div #formContainer class="psc-form-preview-container" [attr.aria-label]="data.title"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="close()">{{ 'PSC.FORMS.CLOSE' | translate }}</button>
+</mat-dialog-actions>

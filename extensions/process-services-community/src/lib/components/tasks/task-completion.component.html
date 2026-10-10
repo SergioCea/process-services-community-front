@@ -1,0 +1,36 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <div class="aca-header-container psc-task-completion-header">
+      <button mat-icon-button type="button" (click)="goBack()" [attr.aria-label]="'PSC.TASKS.BACK' | translate">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="aca-page-title">{{ task?.name || taskId }}</h1>
+    </div>
+  </div>
+
+  <div class="aca-page-layout-content">
+    <div class="aca-main-content">
+      <div class="psc-task-completion-content">
+        <p *ngIf="isLoading" role="status">{{ 'PSC.TASKS.LOADING' | translate }}</p>
+        <p *ngIf="!isLoading && errorMessage" role="alert">{{ errorMessage }}</p>
+        <p *ngIf="renderError" role="alert">{{ renderError }}</p>
+
+        @if (task && schema && !renderError) {
+          <mat-card class="psc-task-form-card">
+            <mat-card-content>
+              <div #formContainer class="psc-task-form-viewer"></div>
+            </mat-card-content>
+          </mat-card>
+        }
+
+        <div class="psc-task-completion-actions">
+          <button mat-button type="button" (click)="cancel()">{{ 'PSC.TASKS.CANCEL' | translate }}</button>
+          <button mat-raised-button color="primary" type="button" [disabled]="isCompleteDisabled"
+                  (click)="completeTask()">
+            {{ 'PSC.TASKS.COMPLETE' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</aca-page-layout>

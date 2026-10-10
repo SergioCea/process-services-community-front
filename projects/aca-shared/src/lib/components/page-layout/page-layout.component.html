@@ -1,0 +1,22 @@
+<div class="aca-content-header">
+  @if ((appNavNarMode$ | async) === 'collapsed') {
+    <button
+      mat-icon-button
+      class="aca-content-header-button"
+      (click)="toggleClick()"
+      [attr.aria-label]="'APP.TOOLTIPS.EXPAND_NAVIGATION' | translate"
+      title="{{'APP.TOOLTIPS.EXPAND_NAVIGATION' | translate}}"
+      adf-auto-focus>
+      <mat-icon>keyboard_double_arrow_right</mat-icon>
+    </button>
+  }
+  <ng-content select=".aca-page-layout-header, aca-page-layout-header"/>
+</div>
+
+@if (hasError) {
+  <ng-content select=".aca-page-layout-error, aca-page-layout-error"/>
+}
+
+@if (!hasError) {
+  <ng-content select=".aca-page-layout-content, aca-page-layout-content"/>
+}

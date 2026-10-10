@@ -1,0 +1,342 @@
+@import 'bpmn-js/dist/assets/diagram-js.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+@import 'bpmn-js/dist/assets/bpmn-js.css';
+
+@import '@bpmn-io/properties-panel/dist/assets/properties-panel.css';
+
+@import '@bpmn-io/form-js/dist/assets/form-js.css';
+@import '@bpmn-io/form-js/dist/assets/form-js-editor.css';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.psc-editor-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  height: auto;
+  width: 100%;
+  min-height: 0;
+  background: #fdfdfd;
+  overflow: hidden;
+}
+
+.psc-process-editor-content {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.psc-editor-saving {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--adf-theme-foreground-text-color-064, #616161);
+  font-size: 13px;
+}
+
+.psc-process-validation {
+  margin: 12px 16px;
+  padding: 12px 16px;
+  border-inline-start: 4px solid var(--theme-warn-color, #b3261e);
+  border-radius: 4px;
+  background: var(--adf-theme-background-card-color, #fff);
+  color: var(--adf-theme-foreground-text-color-087, #212121);
+}
+
+.psc-process-validation h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.psc-process-validation ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psc-process-validation button.mat-mdc-button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 40px;
+  padding: 4px 8px;
+  text-align: left;
+  white-space: normal;
+}
+
+.psc-process-validation button mat-icon {
+  flex: 0 0 auto;
+  margin-inline-end: 8px;
+  color: var(--theme-warn-color, #b3261e);
+}
+
+.psc-process-validation-field {
+  margin-inline-end: 4px;
+  font-weight: 600;
+}
+
+.psc-process-validation code {
+  margin-inline-start: 8px;
+  color: var(--adf-theme-foreground-text-color-064, #616161);
+  font-size: 12px;
+}
+
+.psc-canvas-area {
+  flex: 1 1 auto;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.psc-canvas {
+  height: 100%;
+  width: 100%;
+}
+
+.psc-properties-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  background: #f8f8f8;
+  overflow-y: auto;
+}
+
+.psc-properties-panel[hidden] {
+  display: none !important;
+}
+
+.psc-sidebar {
+  width: 320px;
+  flex: 0 0 320px;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  border-left: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: width 0.3s ease,
+  flex-basis 0.3s ease;
+}
+
+.psc-sidebar.collapsed {
+  width: 40px;
+  flex-basis: 40px;
+}
+
+.psc-sidebar-header {
+  min-height: 40px;
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.psc-sidebar-title {
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.psc-sidebar.collapsed .psc-sidebar-header {
+  padding: 0;
+  justify-content: center;
+}
+
+.psc-sidebar.collapsed .psc-sidebar-title {
+  display: none;
+}
+
+.psc-sidebar-toggle {
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.psc-form-editor-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 100;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.psc-form-editor-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.psc-form-editor-card mat-card-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.psc-form-editor {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+/* bpmn-js overrides */
+.djs-container {
+  height: 100% !important;
+}
+
+.bjs-powered-by {
+  display: none;
+}
+
+.psc-properties-panel .bio-properties-panel {
+  --bio-surface: var(--adf-theme-background-card-color, #fff);
+  --bio-surface-overlay: var(--adf-theme-background-card-color, #fff);
+  --bio-surface-subtle: var(--theme-background-color, #fafafa);
+  --bio-surface-medium: var(--adf-theme-background-hover-color, #f5f5f5);
+  --bio-text: var(--adf-theme-foreground-text-color-087, #212121);
+  --bio-text-subtle: var(--adf-theme-foreground-text-color-064, #616161);
+  --bio-text-subtlest: var(--adf-theme-foreground-icon-color, #757575);
+  --bio-border: var(--adf-theme-foreground-divider-color, #ddd);
+  --bio-border-subtle: var(--adf-theme-foreground-divider-color, #ddd);
+  --bio-border-input: var(--adf-theme-foreground-divider-color, #ddd);
+  --bio-primary: var(--theme-primary-color, #005a9c);
+  --bio-primary-hover: var(--theme-primary-color, #005a9c);
+  --bio-primary-surface: var(--adf-theme-primary-50, #eff7ff);
+  --bio-primary-surface-strong: var(--adf-theme-primary-100, #dbeeff);
+  --bio-focus: var(--theme-primary-color, #005a9c);
+  --bio-radius-sm: 4px;
+  --bio-radius-lg: 4px;
+  --input-background-color: var(--adf-theme-background-card-color, #fff);
+  --input-border-color: var(--adf-theme-foreground-divider-color, #ddd);
+  --input-border-radius: 4px;
+  --input-focus-background-color: var(--adf-theme-background-card-color, #fff);
+  --input-focus-border-color: var(--theme-primary-color, #005a9c);
+  background: var(--adf-theme-background-card-color, #fff);
+  color: var(--adf-theme-foreground-text-color-087, #212121);
+  font-family: var(--theme-font-family, 'Open Sans', sans-serif);
+}
+
+.psc-properties-panel .bio-properties-panel-group-header {
+  min-height: 48px;
+  height: 48px;
+  background: var(--adf-theme-background-card-color, #fff);
+  border-bottom: 1px solid var(--adf-theme-foreground-divider-color, #ddd);
+}
+
+.psc-properties-panel .bio-properties-panel-group-header-title {
+  color: var(--adf-theme-foreground-text-color-087, #212121);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.psc-properties-panel .bio-properties-panel-group-entries {
+  padding: 8px 16px;
+}
+
+.psc-properties-panel .bio-properties-panel-entry {
+  padding: 4px 0 !important;
+}
+
+.psc-properties-panel .bio-properties-panel-label {
+  color: var(--adf-theme-foreground-text-color-064, #616161) !important;
+  font-size: 13px;
+  font-weight: 500 !important;
+  margin-bottom: 6px !important;
+}
+
+.psc-properties-panel .bio-properties-panel-input:not([type='checkbox']):not([type='radio']) {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 12px !important;
+  border: 1px solid var(--adf-theme-foreground-divider-color, #ddd) !important;
+  border-radius: 4px !important;
+  background: var(--adf-theme-background-card-color, #fff) !important;
+  color: var(--adf-theme-foreground-text-color-087, #212121) !important;
+  font: inherit;
+}
+
+.psc-properties-panel .bio-properties-panel-input:not([type='checkbox']):not([type='radio']):focus {
+  border-color: var(--theme-primary-color, #005a9c) !important;
+  outline: 2px solid var(--adf-theme-primary-50, #eff7ff);
+  outline-offset: 0;
+}
+
+.psc-properties-panel .bio-properties-panel-button {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--adf-theme-foreground-divider-color, #ddd);
+  border-radius: 4px;
+  background: var(--adf-theme-background-card-color, #fff);
+  color: var(--adf-theme-foreground-text-color-087, #212121);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.psc-properties-panel .bio-properties-panel-button:hover {
+  border-color: var(--theme-primary-color, #005a9c);
+  background: var(--adf-theme-background-hover-color, #f5f5f5);
+}
+
+.psc-properties-panel .bio-properties-panel-button:focus-visible {
+  outline: 2px solid var(--theme-primary-color, #005a9c);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .psc-editor-container {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .psc-canvas-area {
+    flex: 1 1 60vh;
+    min-height: 320px;
+  }
+
+  .psc-sidebar {
+    width: 100%;
+    flex: 0 0 min(40vh, 360px);
+    height: auto;
+    border-top: 1px solid #e0e0e0;
+    border-left: 0;
+  }
+
+  .psc-sidebar.collapsed {
+    flex: 0 0 40px;
+  }
+
+  .psc-process-validation {
+    margin: 8px;
+    padding: 8px;
+  }
+
+  .psc-editor-saving span {
+    display: none;
+  }
+}

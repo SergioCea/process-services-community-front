@@ -1,0 +1,19 @@
+@import '@bpmn-io/form-js/dist/assets/form-js.css';
+
+.psc-start-form-viewer {
+  min-width: 360px;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.psc-start-form-viewer input[type='checkbox'] {
+  appearance: auto;
+  box-sizing: border-box;
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  max-height: 16px !important;
+}

@@ -1,0 +1,223 @@
+{
+  "PSC": {
+    "TITLE": "Process Services Community",
+    "DESCRIPTION": "A powerful tool for managing processes in Alfresco Content Services",
+    "NAVBAR": {
+      "HOME": {
+        "TITLE": "Processes",
+        "DESCRIPTION": "View deployed process definitions",
+        "ACTIONS": {
+          "TITLE": "Actions",
+          "DESCRIPTION": "Actions available for the user",
+          "NEW_PROCESS_DEF": {
+            "TITLE": "Create Process Definition",
+            "DESCRIPTION": "Create a new process definition in the editor"
+          },
+          "NEW_WF": {
+            "TITLE": "Create Workflow",
+            "DESCRIPTION": "Start a new workflow instance"
+          },
+          "SEARCH": {
+            "TITLE": "Search",
+            "DESCRIPTION": "Search workflows by name, status, etc."
+          }
+        }
+      },
+      "TASKS": {
+        "TITLE": "Tasks",
+        "DESCRIPTION": "Manage your workflow tasks"
+      },
+      "FORMS": {
+        "TITLE": "Forms",
+        "DESCRIPTION": "Create and manage forms for your workflows"
+      }
+    },
+    "TASKS": {
+      "LOADING": "Loading tasks…",
+      "EMPTY": "You have no active tasks.",
+      "ERROR": "Unable to load tasks. Try again.",
+      "FORM_REQUIRED": "Form pending",
+      "FORM_ERROR": "The required form was not provided for this task. It cannot be completed.",
+      "ASSIGNEE": "Assigned to",
+      "CLAIM": "Claim task",
+      "CLAIM_SUCCESS": "Task claimed.",
+      "CLAIM_ERROR": "Unable to claim this task.",
+      "COMPLETE": "Complete task",
+      "COMPLETE_SUCCESS": "Task completed.",
+      "COMPLETE_ERROR": "Unable to complete this task.",
+      "NOT_FOUND": "The requested task could not be found.",
+      "BACK": "Back to tasks",
+      "CANCEL": "Cancel",
+      "DIALOG": {
+        "TITLE": "Complete {{title}}",
+        "CONFIRM": "Complete task"
+      }
+    },
+    "HOME": {
+      "PROCESS_LIST": "Deployed Process Definitions",
+      "NO_PROCESSES": "No deployed processes found.",
+      "COLUMNS": {
+        "NAME": "Name",
+        "TITLE": "Title",
+        "VERSION": "Version",
+        "ID": "ID"
+      },
+      "ACTIONS": {
+        "EDIT": "Edit definition",
+        "RUN": "Create process",
+        "DELETE": "Delete definition"
+      },
+      "DIALOGS": {
+        "START": {
+          "TITLE": "Start {{title}}",
+          "CANCEL": "Cancel",
+          "CONFIRM": "Start process"
+        },
+        "DELETE": {
+          "TITLE": "Delete process definition",
+          "SUBTITLE": "What would you like to delete for process '{{title}}' (v{{version}})?",
+          "ONLY_VERSION": "Delete current version",
+          "ALL": "Delete all versions",
+          "CANCEL": "Cancel",
+          "CONFIRM": "Delete"
+        }
+      }
+    },
+    "FORMS": {
+      "TITLE": "Workflow forms",
+      "EDITOR_TITLE": "Form editor",
+      "PREVIEW": "Preview",
+      "PREVIEW_TITLE": "Preview: {{title}}",
+      "PREVIEW_LOADING": "Loading preview…",
+      "PREVIEW_ERROR": "Unable to preview the form.",
+      "EDIT_PROPERTIES": "Edit properties",
+      "PROPERTY_SECTIONS": "Property sections",
+      "CLOSE": "Close",
+      "LOADING": "Loading forms…",
+      "EMPTY": "There are no available forms. Create one to associate it with a process.",
+      "CREATE": "Create form",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "DELETE_TITLE": "Delete form",
+      "DELETE_CONFIRM": "Move the form '{{title}}' to the trash?",
+      "DELETE_SUCCESS": "Form '{{title}}' was deleted.",
+      "DELETE_ERROR": "Unable to delete the form.",
+      "VERSIONS": "Versions",
+      "VERSIONS_TITLE": "Versions of {{title}}",
+      "VERSIONS_EMPTY": "There are no earlier versions available.",
+      "VERSION": "Version",
+      "CURRENT_VERSION": "current",
+      "RESTORE": "Restore",
+      "VERSIONS_ERROR": "Unable to load the form's version history.",
+      "RESTORE_SUCCESS": "Restored '{{title}}' to version {{version}}.",
+      "RESTORE_ERROR": "Unable to restore the form version.",
+      "SAVE": "Save form",
+      "CANCEL": "Cancel",
+      "NAME": "Form name",
+      "SELECT_TITLE": "Select a form",
+      "CLEAR_LINK": "Remove association",
+      "DEFAULT_FIELD": "Name",
+      "TITLE_REQUIRED": "A form name is required.",
+      "TITLE_MAX_LENGTH": "The form name must be no more than {{max}} characters.",
+      "TITLE_DUPLICATE": "A form with this name already exists.",
+      "FIELD_PROPERTIES_TITLE": "Field properties",
+      "FIELD_PROPERTIES_HINT": "Changes apply to the selected field; save the form to keep them.",
+      "NO_FIELD_PROPERTIES": "There are no properties available for this field.",
+      "LOAD_ERROR": "Unable to load forms.",
+      "SAVE_ERROR": "Unable to save the form.",
+      "EDITOR_ERROR": "Unable to open the form editor.",
+      "RENDER_ERROR": "Unable to open the workflow form.",
+      "CREATE_SUCCESS": "Form '{{title}}' created.",
+      "UPDATE_SUCCESS": "Form '{{title}}' updated.",
+      "VALIDATION": {
+        "schema-invalid": "The form schema is incomplete or invalid.",
+        "component-type-required": "Field {{component}} must have a valid component type.",
+        "field-key-invalid": "Field {{component}} has an invalid identifier: {{key}}.",
+        "field-key-duplicate": "The field identifier '{{key}}' is used more than once.",
+        "field-validation-invalid": "The validation settings for field {{component}} are invalid.",
+        "field-validation-incompatible": "The validation limits for field {{component}} are inconsistent.",
+        "default-value-incompatible": "The default value for '{{key}}' is incompatible with its field type."
+      }
+    },
+    "EDITOR": {
+      "TITLE": "Process Editor",
+      "DESCRIPTION": "Visual modeling of processes and forms",
+      "BPMN_MODELER": "BPMN Modeler",
+      "FORM_EDITOR": "Form Editor",
+      "PROPERTIES": {
+        "TITLE": "Properties",
+        "NO_SELECTION": "Select an element to see its properties",
+        "TABS": {
+          "GENERAL": "General",
+          "FORM": "Form"
+        },
+        "FIELDS": {
+          "NAME": "Name",
+          "ID": "ID",
+          "TYPE": "Type",
+          "VERSION": "Version"
+        },
+        "FORM": {
+          "LINKED": "Form linked to this task",
+          "CREATE": "Create Form",
+          "EDIT": "Edit Form"
+        }
+      },
+      "ACTIONS": {
+        "SAVE": {
+          "TITLE": "Save & Deploy"
+        },
+        "NEW": {
+          "TITLE": "New Diagram"
+        },
+        "CANCEL": "Cancel",
+        "BACK": "Back to processes",
+        "SAVE_FORM": "Save Form"
+      },
+      "FORM": {
+        "FIELDS": {
+          "NAME": "Name"
+        }
+      },
+      "VALIDATION": {
+        "SUMMARY": "Before deployment, fix these issues:",
+        "SAVING": "Validating and deploying…",
+        "FIELDS": {
+          "name": "Process name",
+          "id": "Process ID",
+          "definition": "Process definition",
+          "form": "Form"
+        },
+        "process-required": "The BPMN process definition is missing.",
+        "process-name-required": "Enter a process name.",
+        "process-name-too-long": "The process name must be no more than {{max}} characters.",
+        "process-id-required": "Enter a process ID.",
+        "process-id-invalid": "Use 1–100 letters, numbers, underscores, dots, or hyphens; the first character must be a letter or underscore.",
+        "process-name-duplicate": "A process with this name already exists.",
+        "process-id-duplicate": "This process ID already exists. Open its definition to publish a new version.",
+        "process-not-executable": "Mark the process as executable before deployment.",
+        "start-event-required": "Add at least one start event.",
+        "element-type-required": "A BPMN element has no valid type.",
+        "element-id-required": "A BPMN element is missing its ID.",
+        "element-id-invalid": "The ID '{{element}}' contains unsupported characters or is too long.",
+        "element-id-duplicate": "The ID '{{element}}' is used by more than one BPMN element.",
+        "sequence-flow-invalid": "Sequence flow '{{element}}' must connect existing source and target elements.",
+        "form-schema-missing": "The element '{{element}}' references a form whose schema is missing.",
+        "form-schema-invalid": "The form attached to '{{element}}' has an invalid schema.",
+        "duplicate-check-failed": "Unable to check for existing process definitions. Try again.",
+        "backend-validation": "The server rejected the configuration for this part of the definition.",
+        "deployment-failed": "Unable to deploy this process. Check its configuration and try again."
+      }
+    },
+    "MESSAGES": {
+      "DEPLOY_SUCCESS": "Workflow deployed successfully!",
+      "DEPLOY_ERROR": "Unable to publish the process. Check its configuration and try again.",
+      "DEPLOY_VALIDATION_ERROR": "The server rejected the process configuration. Review the listed issues and try again.",
+      "PROCESS_LOAD_ERROR": "Unable to load the selected process definition.",
+      "FORM_SAVED": "Form saved and linked to task!",
+      "FORM_ASSOCIATED": "Form '{{title}}' associated.",
+      "START_SUCCESS": "Process started successfully.",
+      "START_ERROR": "Unable to start the process. Check the definition and try again."
+    }
+  }
+}

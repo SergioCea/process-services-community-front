@@ -1,0 +1,53 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <div class="aca-header-container">
+      <h1 class="aca-page-title">
+        {{ 'PSC.TITLE' | translate }}
+      </h1>
+      <aca-toolbar [items]="actions"/>
+    </div>
+  </div>
+
+  <div class="aca-page-layout-content">
+    <div class="aca-main-content">
+      <adf-datatable
+        [rows]="processes"
+        [loading]="isLoading"
+        *ngIf="processes.length > 0 || isLoading; else noProcesses">
+        <data-columns>
+          <data-column key="title" title="PSC.HOME.COLUMNS.TITLE"
+                       class="adf-expand-cell adf-data-table-cell--ellipsis"></data-column>
+          <data-column key="version" title="PSC.HOME.COLUMNS.VERSION" class="adf-desktop-only"></data-column>
+          <data-column key="actions" title="" class="adf-data-table-cell--actions">
+            <ng-template let-context>
+              <div class="psc-actions-container">
+                <button mat-icon-button
+                        [matTooltip]="'PSC.HOME.ACTIONS.EDIT' | translate"
+                        (click)="editProcess(context.row); $event.stopPropagation()">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button
+                        [matTooltip]="'PSC.HOME.ACTIONS.RUN' | translate"
+                        (click)="runProcess(context.row); $event.stopPropagation()">
+                  <mat-icon>play_arrow</mat-icon>
+                </button>
+                <button mat-icon-button
+                        color="warn"
+                        [matTooltip]="'PSC.HOME.ACTIONS.DELETE' | translate"
+                        (click)="deleteProcess(context.row); $event.stopPropagation()">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </ng-template>
+          </data-column>
+        </data-columns>
+      </adf-datatable>
+
+      <ng-template #noProcesses>
+        <div class="psc-empty-state">
+          <p>{{ 'PSC.HOME.NO_PROCESSES' | translate }}</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</aca-page-layout>

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ 'PSC.HOME.DIALOGS.DELETE.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ 'PSC.HOME.DIALOGS.DELETE.SUBTITLE' | translate: { title: data.title, version: data.version } }}</p>
+  <mat-radio-group
+    aria-labelledby="psc-delete-radio-group-label"
+    class="psc-delete-radio-group"
+    [(ngModel)]="deleteOption">
+    <mat-radio-button class="psc-delete-radio-button" value="version">
+      {{ 'PSC.HOME.DIALOGS.DELETE.ONLY_VERSION' | translate }}
+    </mat-radio-button>
+    <mat-radio-button class="psc-delete-radio-button" value="all">
+      {{ 'PSC.HOME.DIALOGS.DELETE.ALL' | translate }}
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">{{ 'PSC.HOME.DIALOGS.DELETE.CANCEL' | translate }}</button>
+  <button mat-button color="warn" (click)="onConfirm()">{{ 'PSC.HOME.DIALOGS.DELETE.CONFIRM' | translate }}</button>
+</mat-dialog-actions>

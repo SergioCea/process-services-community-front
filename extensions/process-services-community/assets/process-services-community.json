@@ -1,0 +1,182 @@
+{
+  "$schema": "../../../extension.schema.json",
+  "$id": "process-services-community",
+  "$version": "1.0.0",
+  "$vendor": "Sergio Cea",
+  "$name": "Process Services Community",
+  "$description": "Un poderoso herramienta para gestionar flujos de trabajo en Alfresco Content Services",
+  "$license": "MIT",
+  "routes": [
+    {
+      "id": "process-services-community.routes.main.home",
+      "path": "process-services-community",
+      "component": "process-services-community.main.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    },
+    {
+      "id": "process-services-community.routes.main.task-completion",
+      "path": "process-services-community/tasks/:taskId/complete",
+      "component": "process-services-community.task-completion.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    },
+    {
+      "id": "process-services-community.routes.main.tasks",
+      "path": "process-services-community/tasks",
+      "component": "process-services-community.tasks.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    },
+    {
+      "id": "process-services-community.routes.main.search",
+      "path": "process-services-community/search",
+      "component": "process-services-community.main.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    },
+    {
+      "id": "process-services-community.routes.main.editor",
+      "path": "process-services-community/editor",
+      "component": "process-services-community.process-editor.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    },
+    {
+      "id": "process-services-community.routes.main.forms",
+      "path": "process-services-community/forms",
+      "component": "process-services-community.forms.component",
+      "data": {
+        "title": "PSC.TITLE"
+      }
+    }
+  ],
+  "features": {
+    "navbar": [
+      {
+        "id": "psc.nav",
+        "rules": {
+          "visible": [
+            "psc.isProcessServicesCommunityEnabled"
+          ]
+        },
+        "items": [
+          {
+            "id": "process-services-community.main",
+            "title": "PSC.TITLE",
+            "description": "PSC.DESCRIPTION",
+            "order": 100,
+            "data": {
+              "canBeInactive": true
+            },
+            "children": [
+              {
+                "id": "process-services-community.main.home",
+                "title": "PSC.NAVBAR.HOME.TITLE",
+                "description": "PSC.NAVBAR.HOME.DESCRIPTION",
+                "route": "process-services-community.routes.main.home",
+                "order": 200,
+                "data": {
+                  "canBeInactive": true
+                }
+              },
+              {
+                "id": "process-services-community.main.tasks",
+                "title": "PSC.NAVBAR.TASKS.TITLE",
+                "description": "PSC.NAVBAR.TASKS.DESCRIPTION",
+                "route": "process-services-community.routes.main.tasks",
+                "order": 100,
+                "data": {
+                  "canBeInactive": true
+                }
+              },
+              {
+                "id": "process-services-community.main.forms",
+                "title": "PSC.NAVBAR.FORMS.TITLE",
+                "description": "PSC.NAVBAR.FORMS.DESCRIPTION",
+                "route": "process-services-community.routes.main.forms",
+                "order": 300,
+                "data": {
+                  "canBeInactive": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "toolbar": [
+      {
+        "id": "psc.toolbar.create",
+        "type": "menu",
+        "order": 40,
+        "title": "PSC.NAVBAR.HOME.ACTIONS.TITLE",
+        "description": "PSC.NAVBAR.HOME.ACTIONS.DESCRIPTION",
+        "data": {
+          "menuType": "flat-button",
+          "color": "primary"
+        },
+        "children": [
+          {
+            "id": "psc.create.process.def",
+            "order": 100,
+            "icon": "add_box",
+            "title": "PSC.NAVBAR.HOME.ACTIONS.NEW_PROCESS_DEF.TITLE",
+            "description": "PSC.NAVBAR.HOME.ACTIONS.NEW_PROCESS_DEF.DESCRIPTION",
+            "actions": {
+              "click": "PSC_OPEN_EDITOR"
+            },
+            "rules": {
+              "visible": [
+                "psc.canCreateProcessDefinition",
+                "psc.isProcessServicesCommunityEnabled"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "psc.editor.save",
+        "order": 10,
+        "title": "PSC.EDITOR.ACTIONS.SAVE.TITLE",
+        "icon": "save",
+        "type": "button",
+        "data": {
+          "buttonType": "icon-button",
+          "color": "primary"
+        },
+        "actions": {
+          "click": "PSC_SAVE_PROCESS"
+        },
+        "rules": {
+          "visible": [
+            "psc.navigation.isEditorProcess"
+          ]
+        }
+      },
+      {
+        "id": "psc.editor.new",
+        "order": 20,
+        "title": "PSC.EDITOR.ACTIONS.NEW.TITLE",
+        "icon": "note_add",
+        "type": "button",
+        "data": {
+          "buttonType": "icon-button"
+        },
+        "actions": {
+          "click": "PSC_CREATE_PROCESS"
+        },
+        "rules": {
+          "visible": [
+            "psc.navigation.isEditorProcess"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <adf-breadcrumb [root]="title" [folderNode]="node" (navigate)="onBreadcrumbNavigate($event)"/>
+    <aca-toolbar [items]="actions"/>
+  </div>
+
+  <div class="aca-page-layout-content">
+    <div class="aca-details-container">
+      <div class="aca-details-title">
+        @if (node) {
+          <div class="aca-details-breadcrumb" role="heading" aria-level="2">
+            <span class="aca-details-breadcrumb-library">
+              <img class="aca-details-breadcrumb-icon" alt="{{ 'APP.INFO_DRAWER.ICON' | translate }}"
+                   src="{{ nodeIcon }}">
+              {{ node.name }} </span>
+          </div>
+        }
+        <div class="aca-details-buttons">
+          <aca-toolbar [items]="aspectActions" info-drawer-buttons/>
+          <button
+            class="aca-close-details-button"
+            mat-icon-button
+            data-automation-id="close-library"
+            title="{{ 'APP.INFO_DRAWER.REDUCE_PANEL' | translate }}"
+            (click)="goBack()">
+            <mat-icon>fullscreen_exit</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-tab-group [selectedIndex]="activeTab" class="aca-details-tabs" animationDuration="0" mat-stretch-tabs="false"
+                     mat-align-tabs="start">
+        <mat-tab label="{{ 'APP.INFO_DRAWER.TABS.PROPERTIES' | translate }}">
+          <ng-template matTabContent>
+            @if (node && !isLoading) {
+              <app-metadata-tab [node]="node"/>
+            } @else {
+              <mat-progress-bar mode="indeterminate"/>
+            }
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="{{ 'APP.INFO_DRAWER.TABS.COMMENTS' | translate }}">
+          <ng-template matTabContent>
+            @if (node && !isLoading) {
+              <app-comments-tab [node]="node"/>
+            } @else {
+              <mat-progress-bar mode="indeterminate"/>
+            }
+          </ng-template>
+        </mat-tab>
+        <mat-tab [disabled]="!canManagePermissions" label="{{ 'APP.INFO_DRAWER.TABS.PERMISSIONS' | translate }}">
+          <ng-template matTabContent>
+            @if (node && !isLoading) {
+              <adf-permission-list [nodeId]="node.id"/>
+            } @else {
+              <mat-progress-bar mode="indeterminate"/>
+            }
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</aca-page-layout>
+

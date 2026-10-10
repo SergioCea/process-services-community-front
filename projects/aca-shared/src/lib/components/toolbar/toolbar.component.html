@@ -1,0 +1,5 @@
+<mat-toolbar class="aca-toolbar">
+  @for (item of items; track trackByActionId($index, item)) {
+    <aca-toolbar-action [actionRef]="item"/>
+  }
+</mat-toolbar>

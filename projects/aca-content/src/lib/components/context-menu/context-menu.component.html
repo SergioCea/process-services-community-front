@@ -1,0 +1,33 @@
+<div [dir]="direction">
+  <div style="visibility: hidden;" [matMenuTriggerFor]="rootMenu"></div>
+
+  <mat-menu #rootMenu="matMenu" class="aca-context-menu" hasBackdrop="false" acaContextMenuOutsideEvent (clickOutside)="onClickOutsideEvent()">
+    @for (entry of actions; track trackByActionId($index, entry)) {
+      @switch (entry.type) {
+        @default {
+          <button mat-menu-item [id]="entry.id" (click)="runAction(entry)">
+            <adf-icon [value]="entry.icon" class="app-context-menu-item--icon" />
+            <span [attr.data-automation-id]="entry.id + '-label'">{{ entry.title | translate }}</span>
+          </button>
+        }
+        @case ('separator') {
+          <mat-divider aria-hidden="true" />
+        }
+        @case ('menu') {
+          <button mat-menu-item [id]="entry.id" [matMenuTriggerFor]="childMenu">
+            <adf-icon [value]="entry.icon" class="app-context-menu-item--icon" />
+            <span [attr.data-automation-id]="entry.id + '-label'">{{ entry.title | translate }}</span>
+          </button>
+          <mat-menu #childMenu="matMenu">
+            @for (child of entry.children; track trackByActionId($index, child)) {
+              <app-context-menu-item [actionRef]="child" />
+            }
+          </mat-menu>
+        }
+        @case ('custom') {
+          <adf-dynamic-component [data]="entry.data" [id]="entry.component" />
+        }
+      }
+    }
+  </mat-menu>
+</div>

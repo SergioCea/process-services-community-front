@@ -1,0 +1,26 @@
+<form class="aca-rule-action__form" [formGroup]="form">
+
+  <mat-form-field class="aca-rule-action-full-width aca-rule-action-form-field">
+    <mat-select
+      formControlName="actionDefinitionId"
+      data-automation-id="rule-action-select"
+      [placeholder]="'ACA_FOLDER_RULES.RULE_DETAILS.ACTION_SELECT_PLACEHOLDER' | translate">
+      @for (actionDefinition of actionDefinitions; track actionDefinition.id) {
+        <mat-option
+          [value]="actionDefinition.id">
+          {{ actionDefinition.title }}
+        </mat-option>
+      }
+    </mat-select>
+    <mat-error>{{ 'ACA_FOLDER_RULES.RULE_DETAILS.ERROR.ACTION_REQUIRED' | translate }}</mat-error>
+  </mat-form-field>
+
+  @if (cardViewItems?.length > 0) {
+    <adf-card-view
+      data-automation-id="rule-action-card-view"
+      [properties]="cardViewItems"
+      class="aca-rule-action-full-width"
+      [editable]="!readOnly"/>
+  }
+
+</form>

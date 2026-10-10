@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>
+  {{ (data.mode === 'task' ? 'PSC.TASKS.DIALOG.TITLE' : 'PSC.HOME.DIALOGS.START.TITLE') | translate: {title: data.title} }}
+</h2>
+<mat-dialog-content>
+  <p *ngIf="renderError" role="alert">{{ renderError }}</p>
+  <div #formContainer class="psc-start-form-viewer"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">{{ 'PSC.HOME.DIALOGS.START.CANCEL' | translate }}</button>
+  <button mat-raised-button color="primary" type="button" [disabled]="!isFormReady" (click)="submitForm()">
+    {{ (data.mode === 'task' ? 'PSC.TASKS.DIALOG.CONFIRM' : 'PSC.HOME.DIALOGS.START.CONFIRM') | translate }}
+  </button>
+</mat-dialog-actions>

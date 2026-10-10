@@ -1,0 +1,74 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <div class="aca-header-container">
+      <h1 class="aca-page-title">
+        {{ 'PSC.EDITOR.TITLE' | translate }}
+      </h1>
+      <button mat-button type="button" class="psc-editor-back-button" [disabled]="isSaving" (click)="goBack()">
+        <mat-icon aria-hidden="true">arrow_back</mat-icon>
+        {{ 'PSC.EDITOR.ACTIONS.BACK' | translate }}
+      </button>
+      <aca-toolbar [items]="actions" />
+      <div *ngIf="isSaving" class="psc-editor-saving" role="status" aria-live="polite">
+        <mat-progress-spinner mode="indeterminate" diameter="20" aria-hidden="true" />
+        <span>{{ 'PSC.EDITOR.VALIDATION.SAVING' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="aca-page-layout-content psc-process-editor-content">
+    <section
+      *ngIf="validationErrors.length > 0"
+      class="psc-process-validation"
+      role="alert"
+      aria-live="assertive"
+      aria-labelledby="psc-process-validation-title"
+    >
+      <h2 id="psc-process-validation-title">{{ 'PSC.EDITOR.VALIDATION.SUMMARY' | translate }}</h2>
+      <ul>
+        <li *ngFor="let issue of validationErrors">
+          <button mat-button type="button" [attr.aria-label]="validationIssueLabel(issue)" (click)="focusValidationError(issue)">
+            <mat-icon aria-hidden="true">error_outline</mat-icon>
+            <span class="psc-process-validation-field">{{ validationIssueFieldLabel(issue) }}:</span>
+            <span>{{ validationIssueMessage(issue) }}</span>
+            <code *ngIf="issue.elementId">{{ issue.elementId }}</code>
+          </button>
+        </li>
+      </ul>
+    </section>
+
+    <div class="psc-editor-container">
+      <div class="psc-canvas-area">
+        <div #canvas class="psc-canvas"></div>
+      </div>
+
+      <div class="psc-sidebar" [class.collapsed]="!isPropertiesPanelExpanded">
+        <div class="psc-sidebar-header" (click)="togglePropertiesPanel()">
+          <span class="psc-sidebar-title">{{ 'PSC.EDITOR.PROPERTIES.TITLE' | translate }}</span>
+          <button mat-icon-button class="psc-sidebar-toggle">
+            <mat-icon>{{ isPropertiesPanelExpanded ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}</mat-icon>
+          </button>
+        </div>
+
+        <div #properties class="psc-properties-panel" [hidden]="!isPropertiesPanelExpanded"></div>
+
+        @if (showFormEditor) {
+          <div class="psc-form-editor-overlay">
+            <mat-card class="psc-form-editor-card">
+              <mat-card-header>
+                <mat-card-title>{{ 'PSC.EDITOR.PROPERTIES.TABS.FORM' | translate }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div #formEditorContainer class="psc-form-editor"></div>
+              </mat-card-content>
+              <mat-card-actions align="end">
+                <button mat-button type="button" (click)="cancelFormEditing()">{{ 'PSC.EDITOR.ACTIONS.CANCEL' | translate }}</button>
+                <button mat-raised-button color="primary" type="button" (click)="saveForm()">{{ 'PSC.EDITOR.ACTIONS.SAVE_FORM' | translate }}</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</aca-page-layout>

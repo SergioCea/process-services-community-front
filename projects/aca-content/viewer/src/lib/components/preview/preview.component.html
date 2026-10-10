@@ -1,0 +1,38 @@
+@if (nodeId) {
+  <adf-alfresco-viewer
+    [ngClass]="{
+      'aca-right_side--hide': !showRightSide
+    }"
+    [nodeId]="nodeId"
+    [allowNavigate]="navigateMultiple"
+    [allowRightSidebar]="true"
+    [allowPrint]="false"
+    [showRightSidebar]="true"
+    [allowDownload]="false"
+    [allowFullScreen]="false"
+    [canNavigateBefore]="!!previousNodeId"
+    [canNavigateNext]="!!nextNodeId"
+    [overlayMode]="true"
+    (showViewerChange)="onVisibilityChanged($event)"
+    (navigateBefore)="onNavigateBefore($event)"
+    (navigateNext)="onNavigateNext($event)"
+  >
+    @if (infoDrawerOpened$ | async) {
+      <adf-viewer-sidebar>
+        <aca-info-drawer [node]="selection.file"/>
+      </adf-viewer-sidebar>
+    }
+    @if (openWith.length) {
+      <adf-viewer-open-with>
+        @for (action of openWith; track trackByActionId($index, action)) {
+          <app-toolbar-menu-item [actionRef]="action"/>
+        }
+      </adf-viewer-open-with>
+    }
+    @if (!simplestMode) {
+      <adf-viewer-toolbar-actions>
+        <aca-toolbar [items]="viewerToolbarActions"/>
+      </adf-viewer-toolbar-actions>
+    }
+  </adf-alfresco-viewer>
+}

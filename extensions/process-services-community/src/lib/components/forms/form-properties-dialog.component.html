@@ -1,0 +1,45 @@
+<div class="psc-form-properties-header">
+  <div class="psc-form-properties-heading">
+    <h2 mat-dialog-title>{{ 'PSC.FORMS.FIELD_PROPERTIES_TITLE' | translate }}</h2>
+    <p id="psc-form-properties-hint"
+       class="psc-form-properties-subtitle">{{ 'PSC.FORMS.FIELD_PROPERTIES_HINT' | translate }}</p>
+  </div>
+  <button
+    mat-icon-button
+    type="button"
+    [attr.aria-label]="'PSC.FORMS.CLOSE' | translate"
+    [matTooltip]="'PSC.FORMS.CLOSE' | translate"
+    (click)="close()"
+  >
+    <mat-icon aria-hidden="true">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="psc-form-properties-content">
+  <p *ngIf="propertyTabs().length === 0" class="psc-form-properties-empty" role="status" aria-live="polite">
+    {{ 'PSC.FORMS.NO_FIELD_PROPERTIES' | translate }}
+  </p>
+  <div
+    *ngIf="propertyTabs().length > 0"
+    #propertyTabsContainer
+    class="psc-form-properties-tabs"
+    role="tablist"
+    [attr.aria-label]="'PSC.FORMS.PROPERTY_SECTIONS' | translate"
+  >
+    <button
+      *ngFor="let tab of propertyTabs(); let index = index"
+      mat-button
+      type="button"
+      class="psc-form-properties-tab"
+      role="tab"
+      [id]="tab.id"
+      [attr.aria-controls]="tab.panelId"
+      [attr.aria-selected]="selectedPropertyTab() === tab.key"
+      [attr.tabindex]="selectedPropertyTab() === tab.key ? 0 : -1"
+      (click)="selectPropertyTab(tab.key)"
+      (keydown)="handlePropertyTabKeydown($event, index)"
+    >
+      {{ tab.label }}
+    </button>
+  </div>
+  <div #propertiesPanelContainer></div>
+</mat-dialog-content>

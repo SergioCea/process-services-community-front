@@ -1,0 +1,226 @@
+{
+  "PSC": {
+    "TITLE": "Process Services Community",
+    "DESCRIPTION": "Un poderoso herramienta para gestionar flujos de trabajo en Alfresco Content Services",
+    "NAVBAR": {
+      "HOME": {
+        "TITLE": "Procesos",
+        "DESCRIPTION": "Consulta las definiciones de procesos desplegadas",
+        "ACTIONS": {
+          "TITLE": "Acciones",
+          "DESCRIPTION": "Acciones disponibles para el usuario",
+          "NEW_PROCESS_DEF": {
+            "TITLE": "Crear definición de proceso",
+            "DESCRIPTION": "Crea una nueva definición de proceso en el editor"
+          },
+          "NEW_WF": {
+            "TITLE": "Crear flujo de trabajo",
+            "DESCRIPTION": "Inicia una nueva instancia de flujo de trabajo"
+          },
+          "SEARCH": {
+            "TITLE": "Buscar",
+            "DESCRIPTION": "Busca los flujos de trabajo por nombre, estado, etc."
+          }
+        }
+      },
+      "TASKS": {
+        "TITLE": "Tareas",
+        "DESCRIPTION": "Administra tus tareas de flujo de trabajo"
+      },
+      "FORMS": {
+        "TITLE": "Formularios",
+        "DESCRIPTION": "Crea y administra formularios para tus flujos de trabajo"
+      }
+    },
+    "TASKS": {
+      "LOADING": "Cargando tareas…",
+      "EMPTY": "No tienes tareas activas.",
+      "ERROR": "No se pudieron cargar las tareas. Inténtalo de nuevo.",
+      "FORM_REQUIRED": "Formulario pendiente",
+      "FORM_ERROR": "No se recibió el formulario requerido para esta tarea. No se puede completar.",
+      "ASSIGNEE": "Asignada a",
+      "CLAIM": "Reclamar tarea",
+      "CLAIM_SUCCESS": "Tarea reclamada.",
+      "CLAIM_ERROR": "No se pudo reclamar la tarea.",
+      "COMPLETE": "Completar tarea",
+      "COMPLETE_SUCCESS": "Tarea completada.",
+      "COMPLETE_ERROR": "No se pudo completar la tarea.",
+      "NOT_FOUND": "No se encontró la tarea solicitada.",
+      "BACK": "Volver a tareas",
+      "CANCEL": "Cancelar",
+      "DIALOG": {
+        "TITLE": "Completar {{title}}",
+        "CONFIRM": "Completar tarea"
+      }
+    },
+    "HOME": {
+      "PROCESS_LIST": "Definiciones de procesos desplegados",
+      "NO_PROCESSES": "No se encontraron procesos desplegados.",
+      "COLUMNS": {
+        "NAME": "Nombre",
+        "TITLE": "Título",
+        "VERSION": "Versión",
+        "ID": "ID"
+      },
+      "ACTIONS": {
+        "EDIT": "Editar definición",
+        "RUN": "Crear proceso",
+        "DELETE": "Borrar definición"
+      },
+      "DIALOGS": {
+        "START": {
+          "TITLE": "Iniciar {{title}}",
+          "CANCEL": "Cancelar",
+          "CONFIRM": "Iniciar proceso"
+        },
+        "DELETE": {
+          "TITLE": "Borrar definición de proceso",
+          "SUBTITLE": "¿Qué desea borrar para el proceso '{{title}}' (v{{version}})?",
+          "ONLY_VERSION": "Borrar versión actual",
+          "ALL": "Borrar por completo (todas las versiones)",
+          "CANCEL": "Cancelar",
+          "CONFIRM": "Borrar"
+        }
+      }
+    },
+    "FORMS": {
+      "TITLE": "Formularios de flujo de trabajo",
+      "EDITOR_TITLE": "Editor de formularios",
+      "PREVIEW": "Vista previa",
+      "PREVIEW_TITLE": "Vista previa: {{title}}",
+      "PREVIEW_LOADING": "Cargando vista previa…",
+      "PREVIEW_ERROR": "No se pudo mostrar la vista previa del formulario.",
+      "EDIT_PROPERTIES": "Editar propiedades",
+      "PROPERTY_SECTIONS": "Secciones de propiedades",
+      "CLOSE": "Cerrar",
+      "LOADING": "Cargando formularios…",
+      "EMPTY": "No hay formularios disponibles. Crea uno para poder asociarlo a un proceso.",
+      "CREATE": "Crear formulario",
+      "EDIT": "Editar",
+      "DELETE": "Eliminar",
+      "DELETE_TITLE": "Eliminar formulario",
+      "DELETE_CONFIRM": "¿Quieres enviar el formulario '{{title}}' a la papelera?",
+      "DELETE_SUCCESS": "El formulario '{{title}}' se ha eliminado.",
+      "DELETE_ERROR": "No se pudo eliminar el formulario.",
+      "VERSIONS": "Versiones",
+      "VERSIONS_TITLE": "Versiones de {{title}}",
+      "VERSIONS_EMPTY": "No hay versiones anteriores disponibles.",
+      "VERSION": "Versión",
+      "CURRENT_VERSION": "actual",
+      "RESTORE": "Restaurar",
+      "VERSIONS_ERROR": "No se pudo cargar el historial del formulario.",
+      "RESTORE_SUCCESS": "Se restauró '{{title}}' a la versión {{version}}.",
+      "RESTORE_ERROR": "No se pudo restaurar la versión del formulario.",
+      "SAVE": "Guardar formulario",
+      "CANCEL": "Cancelar",
+      "NAME": "Nombre del formulario",
+      "SELECT_TITLE": "Seleccionar formulario",
+      "CLEAR_LINK": "Quitar asociación",
+      "DEFAULT_FIELD": "Nombre",
+      "TITLE_REQUIRED": "El nombre del formulario es obligatorio.",
+      "TITLE_MAX_LENGTH": "El nombre del formulario no puede superar {{max}} caracteres.",
+      "TITLE_DUPLICATE": "Ya existe un formulario con este nombre.",
+      "FIELD_PROPERTIES_TITLE": "Propiedades del campo",
+      "FIELD_PROPERTIES_HINT": "Los cambios se aplican al campo seleccionado; guarda el formulario para conservarlos.",
+      "NO_FIELD_PROPERTIES": "Este campo no tiene propiedades disponibles.",
+      "LOAD_ERROR": "No se pudieron cargar los formularios.",
+      "SAVE_ERROR": "No se pudo guardar el formulario.",
+      "EDITOR_ERROR": "No se pudo abrir el editor del formulario.",
+      "RENDER_ERROR": "No se pudo abrir el formulario del flujo de trabajo.",
+      "CREATE_SUCCESS": "Formulario '{{title}}' creado.",
+      "UPDATE_SUCCESS": "Formulario '{{title}}' actualizado.",
+      "VALIDATION": {
+        "schema-invalid": "El esquema del formulario está incompleto o no es válido.",
+        "component-type-required": "El campo {{component}} debe tener un tipo válido.",
+        "field-key-invalid": "El campo {{component}} tiene un identificador no válido: {{key}}.",
+        "field-key-duplicate": "El identificador '{{key}}' está repetido.",
+        "field-validation-invalid": "Las validaciones del campo {{component}} no son válidas.",
+        "field-validation-incompatible": "Los límites de validación del campo {{component}} son incompatibles.",
+        "default-value-incompatible": "El valor predeterminado de '{{key}}' no es compatible con el tipo del campo."
+      }
+    },
+    "EDITOR": {
+      "TITLE": "Editor de Procesos",
+      "DESCRIPTION": "Modelado visual de procesos y formularios",
+      "BPMN_MODELER": "Modelador BPMN",
+      "FORM_EDITOR": "Editor de Formulario",
+      "PROPERTIES": {
+        "TITLE": "Propiedades",
+        "NO_SELECTION": "Selecciona un elemento para ver sus propiedades",
+        "TABS": {
+          "GENERAL": "General",
+          "FORM": "Formulario"
+        },
+        "FIELDS": {
+          "NAME": "Nombre",
+          "ID": "ID",
+          "TYPE": "Tipo",
+          "VERSION": "Versión"
+        },
+        "FORM": {
+          "LINKED": "Formulario vinculado a esta tarea",
+          "CREATE": "Crear Formulario",
+          "EDIT": "Editar Formulario"
+        }
+      },
+      "ACTIONS": {
+        "SAVE": {
+          "TITLE": "Guardar y Desplegar"
+        },
+        "NEW": {
+          "TITLE": "Nuevo Diagrama"
+        },
+        "CANCEL": "Cancelar",
+        "BACK": "Volver a procesos",
+        "SAVE_FORM": "Guardar Formulario"
+      },
+      "FORM": {
+        "FIELDS": {
+          "NAME": "Nombre"
+        }
+      },
+      "VALIDATION": {
+        "SUMMARY": "Corrige estos problemas antes de desplegar:",
+        "SAVING": "Validando y desplegando…",
+        "FIELDS": {
+          "name": "Nombre del proceso",
+          "id": "Identificador del proceso",
+          "definition": "Definición del proceso",
+          "form": "Formulario"
+        },
+        "process-required": "Falta la definición BPMN del proceso.",
+        "process-name-required": "Indica un nombre para el proceso.",
+        "process-name-too-long": "El nombre del proceso no puede superar {{max}} caracteres.",
+        "process-id-required": "Indica un identificador para el proceso.",
+        "process-id-invalid": "Usa entre 1 y 100 letras, números, guiones bajos, puntos o guiones; comienza por una letra o guion bajo.",
+        "process-name-duplicate": "Ya existe un proceso con este nombre.",
+        "process-id-duplicate": "Ya existe este identificador. Abre su definición para publicar una nueva versión.",
+        "process-not-executable": "Marca el proceso como ejecutable antes de desplegarlo.",
+        "start-event-required": "Añade al menos un evento de inicio.",
+        "element-type-required": "Hay un elemento BPMN sin un tipo válido.",
+        "element-id-required": "Falta el identificador de un elemento BPMN.",
+        "element-id-invalid": "El identificador '{{element}}' contiene caracteres no permitidos o es demasiado largo.",
+        "element-id-duplicate": "El identificador '{{element}}' está repetido en varios elementos BPMN.",
+        "sequence-flow-invalid": "El flujo '{{element}}' debe conectar elementos de origen y destino existentes.",
+        "form-schema-missing": "El elemento '{{element}}' referencia un formulario cuyo esquema no está disponible.",
+        "form-schema-invalid": "El formulario asociado a '{{element}}' tiene un esquema no válido.",
+        "duplicate-check-failed": "No se pudieron comprobar las definiciones existentes. Inténtalo de nuevo.",
+        "backend-validation": "El servidor rechazó la configuración de esta parte de la definición.",
+        "deployment-failed": "No se pudo desplegar el proceso. Revisa su configuración e inténtalo de nuevo."
+      }
+    },
+    "MESSAGES": {
+      "DEPLOY_SUCCESS": "¡Flujo de trabajo desplegado con éxito!",
+      "DEPLOY_ERROR": "No se pudo publicar el proceso. Revisa su configuración e inténtalo de nuevo.",
+      "DEPLOY_VALIDATION_ERROR": "El servidor rechazó la configuración del proceso. Revisa los problemas indicados e inténtalo de nuevo.",
+      "PROCESS_LOAD_ERROR": "No se pudo cargar la definición del proceso seleccionada.",
+      "FORM_SAVED": "¡Formulario guardado y vinculado a la tarea!",
+      "FORM_ASSOCIATED": "Se ha asociado el formulario '{{title}}'.",
+      "START_SUCCESS": "Proceso iniciado correctamente.",
+      "START_ERROR": "No se pudo iniciar el proceso. Comprueba la definición e inténtalo de nuevo.",
+      "DELETE_CONFIRM": "¿Estás seguro de que deseas borrar esta definición de proceso?",
+      "DELETE_SUCCESS": "Definición de proceso borrada con éxito.",
+      "DELETE_ERROR": "Error al borrar la definición de proceso."
+    }
+  }
+}

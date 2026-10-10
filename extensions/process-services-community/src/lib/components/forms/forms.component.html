@@ -1,0 +1,115 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <div class="aca-header-container">
+      <h1 class="aca-page-title">{{ (isEditing ? 'PSC.FORMS.EDITOR_TITLE' : 'PSC.FORMS.TITLE') | translate }}</h1>
+      <aca-toolbar *ngIf="!isEditing" [items]="actions" />
+    </div>
+  </div>
+
+  <div class="aca-page-layout-content aca-scrollable">
+    <div class="aca-main-content psc-forms-content">
+      <p *ngIf="isLoading" role="status">{{ 'PSC.FORMS.LOADING' | translate }}</p>
+      <p *ngIf="!isLoading && errorMessage" role="alert">{{ errorMessage }}</p>
+
+      <div *ngIf="!isEditing && !isLoading && !errorMessage" class="psc-forms-list">
+        <div *ngIf="forms.length === 0" class="psc-forms-empty">
+          <mat-icon aria-hidden="true">description</mat-icon>
+          <p>{{ 'PSC.FORMS.EMPTY' | translate }}</p>
+        </div>
+        <mat-card *ngFor="let form of forms" class="psc-form-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="true">description</mat-icon>
+            <mat-card-title>{{ form.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions align="end">
+            <button mat-button (click)="openVersionHistory(form)">
+              <mat-icon aria-hidden="true">history</mat-icon>
+              {{ 'PSC.FORMS.VERSIONS' | translate }}
+            </button>
+            <button mat-button (click)="editForm(form)">
+              <mat-icon>edit</mat-icon>
+              {{ 'PSC.FORMS.EDIT' | translate }}
+            </button>
+            <button mat-button color="warn" (click)="deleteForm(form)">
+              <mat-icon aria-hidden="true">delete</mat-icon>
+              {{ 'PSC.FORMS.DELETE' | translate }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <section *ngIf="isEditing" class="psc-form-editor-section">
+        <div class="psc-form-editor-header">
+          <mat-form-field appearance="outline" class="psc-form-title-field">
+            <mat-label>{{ 'PSC.FORMS.NAME' | translate }} <span aria-hidden="true">*</span></mat-label>
+            <input
+              id="psc-form-title"
+              matInput
+              type="text"
+              [formControl]="formTitle"
+              [maxlength]="maxFormTitleLength"
+              [disabled]="isSaving"
+              required
+              autocomplete="off"
+            />
+            <mat-hint align="end">{{ formTitle.value.length }} / {{ maxFormTitleLength }}</mat-hint>
+            <mat-error *ngIf="formTitle.hasError('required') || formTitle.hasError('whitespace')">
+              {{ 'PSC.FORMS.TITLE_REQUIRED' | translate }}
+            </mat-error>
+            <mat-error *ngIf="formTitle.hasError('maxlength')">
+              {{ 'PSC.FORMS.TITLE_MAX_LENGTH' | translate: { max: maxFormTitleLength } }}
+            </mat-error>
+            <mat-error *ngIf="formTitle.hasError('duplicate')">
+              {{ 'PSC.FORMS.TITLE_DUPLICATE' | translate }}
+            </mat-error>
+          </mat-form-field>
+          <div class="psc-form-editor-actions">
+            <button
+              mat-icon-button
+              type="button"
+              [attr.aria-label]="'PSC.FORMS.PREVIEW' | translate"
+              [matTooltip]="'PSC.FORMS.PREVIEW' | translate"
+              [disabled]="isSaving || !isEditorReady"
+              (click)="previewForm()"
+            >
+              <mat-icon aria-hidden="true">visibility</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              type="button"
+              [attr.aria-label]="'PSC.FORMS.CANCEL' | translate"
+              [matTooltip]="'PSC.FORMS.CANCEL' | translate"
+              [disabled]="isSaving"
+              (click)="cancelEditing()"
+            >
+              <mat-icon aria-hidden="true">close</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              type="button"
+              [attr.aria-label]="'PSC.FORMS.SAVE' | translate"
+              [matTooltip]="'PSC.FORMS.SAVE' | translate"
+              [disabled]="isSaveDisabled"
+              (click)="saveForm()"
+            >
+              <mat-icon *ngIf="!isSaving" aria-hidden="true">save</mat-icon>
+              <mat-progress-spinner *ngIf="isSaving" mode="indeterminate" diameter="20" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        <mat-card class="psc-form-editor-card">
+          <mat-card-content>
+            <div #propertiesPanelHome class="psc-form-properties-panel-home"></div>
+            <div #formEditorContainer class="psc-form-editor"></div>
+            <div *ngIf="errorMessage || formValidationIssues.length" class="psc-form-validation-errors" role="alert" aria-live="assertive">
+              <p *ngIf="errorMessage">{{ errorMessage }}</p>
+              <ul *ngIf="formValidationIssues.length">
+                <li *ngFor="let issue of formValidationIssues">{{ formValidationMessage(issue) }}</li>
+              </ul>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    </div>
+  </div>
+</aca-page-layout>

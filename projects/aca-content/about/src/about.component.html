@@ -1,0 +1,48 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <button
+      mat-icon-button
+      [attr.aria-label]="'APP.ABOUT.BACK_BUTTON_LABEL' | translate"
+      [attr.title]="'APP.ABOUT.BACK_BUTTON_LABEL' | translate"
+      [routerLink]="landingPage">
+      <mat-icon class="app-profile-icon">arrow_back</mat-icon>
+    </button>
+    <h1>{{ 'APP.BROWSE.ABOUT.TITLE' | translate }}</h1>
+  </div>
+
+  <div class="aca-page-layout-content aca-scrollable">
+    <adf-about>
+      @if (dev) {
+        <adf-about-panel [label]="'ABOUT.SERVER_SETTINGS.TITLE' | translate">
+          <ng-template>
+            <adf-about-server-settings />
+          </ng-template>
+        </adf-about-panel>
+      }
+
+      @if (repository) {
+        <adf-about-panel [label]="'ABOUT.REPOSITORY' | translate">
+          <ng-template>
+            <adf-about-repository-info [data]="repository" />
+          </ng-template>
+        </adf-about-panel>
+      }
+
+      @if (dev) {
+        <adf-about-panel [label]="'ABOUT.PACKAGES.TITLE' | translate">
+          <ng-template>
+            <adf-about-package-list [dependencies]="packageJson?.dependencies" />
+          </ng-template>
+        </adf-about-panel>
+      }
+
+      @if (extensions$ | async; as extensions) {
+        <adf-about-panel [label]="'ABOUT.PLUGINS.TITLE' | translate">
+          <ng-template>
+            <adf-about-extension-list [data]="extensions" />
+          </ng-template>
+        </adf-about-panel>
+      }
+    </adf-about>
+  </div>
+</aca-page-layout>

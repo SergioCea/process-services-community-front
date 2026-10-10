@@ -1,0 +1,41 @@
+@if (nodeId) {
+  <adf-alfresco-viewer
+    [ngClass]="{
+      'aca-right_side--hide': !showRightSide
+    }"
+    [maxRetries]="settings.viewerMaxRetries"
+    [nodeId]="nodeId"
+    [readOnly]="node?.aspectNames?.includes('cm:checkedOut')"
+    [versionId]="versionId"
+    [allowNavigate]="navigateMultiple"
+    [allowRightSidebar]="true"
+    [allowPrint]="false"
+    [showRightSidebar]="true"
+    [allowDownload]="false"
+    [allowFullScreen]="false"
+    [overlayMode]="true"
+    [hideInfoButton]="true"
+    [closeButtonPosition]="settings.viewerCloseButtonPosition"
+    (showViewerChange)="onViewerVisibilityChanged()"
+    [canNavigateBefore]="!!previousNodeId"
+    [canNavigateNext]="!!nextNodeId"
+    (navigateBefore)="onNavigateBefore($event)"
+    (navigateNext)="onNavigateNext($event)"
+  >
+    @if (infoDrawerOpened$ | async) {
+      <adf-viewer-sidebar>
+        <aca-info-drawer [node]="selection.file"/>
+      </adf-viewer-sidebar>
+    }
+    @if (openWith.length) {
+      <adf-viewer-open-with>
+        @for (action of openWith; track trackByActionId($index, action)) {
+          <app-toolbar-menu-item [actionRef]="action"/>
+        }
+      </adf-viewer-open-with>
+    }
+    <adf-viewer-toolbar-actions>
+      <aca-toolbar [items]="toolbarActions"/>
+    </adf-viewer-toolbar-actions>
+  </adf-alfresco-viewer>
+}

@@ -1,0 +1,105 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <aca-search-input />
+    <aca-toolbar class="aca-search-results__toolbar-actions" [items]="actions" />
+  </div>
+
+  <div class="aca-page-layout-content">
+    <div class="aca-main-content">
+      <div class="adf-search-results">
+        <div class="adf-search-results__content">
+          @if (isLoading) {
+            <mat-progress-bar mode="indeterminate" />
+          }
+          @if (data?.list.entries.length) {
+            <div class="adf-search-results__content-header aca-content-lib">
+              <div class="aca-content__side--left">
+                @if (totalResults !== 1) {
+                  <div class="adf-search-results--info-text">
+                    {{ 'APP.BROWSE.SEARCH_LIBRARIES.FOUND_RESULTS' | translate: { number: totalResults } }}
+                  </div>
+                }
+                @if (totalResults === 1) {
+                  <div class="adf-search-results--info-text">
+                    {{ 'APP.BROWSE.SEARCH_LIBRARIES.FOUND_ONE_RESULT' | translate: { number: totalResults } }}
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <adf-document-list
+            #documentList
+            acaContextActions
+            acaDocumentList
+            [showHeader]="showHeader"
+            [selectionMode]="'multiple'"
+            [multiselect]="true"
+            [sorting]="['name', 'asc']"
+            [node]="data"
+            [displayCheckboxesOnHover]="true"
+            [imageResolver]="imageResolver"
+            [isResizingEnabled]="true"
+            [blurOnResize]="false"
+            (node-dblclick)="handleNodeClick($event)"
+            (name-click)="handleNodeClick($event)"
+            >
+            <data-columns>
+              @for (column of columns; track trackByColumnId($index, column)) {
+                @if (column.template && !(column.desktopOnly && isSmallScreen)) {
+                  <data-column
+                    [id]="column.id"
+                    [key]="column.key"
+                    [title]="column.title"
+                    [type]="column.type"
+                    [format]="column.format"
+                    [class]="column.class"
+                    [sortable]="column.sortable"
+                    [draggable]="column.draggable"
+                    [resizable]="column.resizable"
+                    >
+                    <ng-template let-context>
+                      <adf-dynamic-column [id]="column.template" [context]="context" />
+                    </ng-template>
+                  </data-column>
+                }
+                @if (!column.template && !(column.desktopOnly && isSmallScreen)) {
+                  <data-column
+                    [id]="column.id"
+                    [key]="column.key"
+                    [title]="column.title"
+                    [type]="column.type"
+                    [format]="column.format"
+                    [class]="column.class"
+                    [sortable]="column.sortable"
+                    [draggable]="column.draggable"
+                    [resizable]="column.resizable"
+                    />
+                }
+              }
+            </data-columns>
+
+            <adf-custom-empty-content-template>
+              @if (data) {
+                <div class="empty-search__block" aria-live="polite">
+                  <p class="empty-search__text">
+                    {{ 'APP.BROWSE.SEARCH.NO_RESULTS' | translate }}
+                  </p>
+                </div>
+              }
+            </adf-custom-empty-content-template>
+          </adf-document-list>
+
+          @if (totalResults > 0) {
+            <adf-pagination acaPagination [target]="documentList" (change)="onPaginationChanged($event)" />
+          }
+        </div>
+      </div>
+    </div>
+    @if (infoDrawerOpened$ | async) {
+      <div class="aca-sidebar">
+        <aca-info-drawer [node]="selection.last" />
+      </div>
+    }
+  </div>
+</aca-page-layout>

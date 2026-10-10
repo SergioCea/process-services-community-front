@@ -1,0 +1,45 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <div class="aca-header-container">
+      <h1 class="aca-page-title">{{ 'PSC.TITLE' | translate }} - {{ 'PSC.NAVBAR.TASKS.TITLE' | translate }}</h1>
+    </div>
+  </div>
+  <div class="aca-page-layout-content">
+    <div class="aca-main-content psc-tasks-content">
+      <p *ngIf="isLoading" role="status">{{ 'PSC.TASKS.LOADING' | translate }}</p>
+      <p *ngIf="!isLoading && errorMessage" role="alert">{{ errorMessage }}</p>
+      <div *ngIf="!isLoading && !errorMessage && tasks.length === 0" class="psc-tasks-empty">
+        <p>{{ 'PSC.TASKS.EMPTY' | translate }}</p>
+      </div>
+
+      <div *ngIf="tasks.length > 0" class="psc-task-list">
+        <mat-card *ngFor="let task of tasks" class="psc-task-card">
+          <mat-card-header>
+            <mat-card-title>{{ task.name || task.id }}</mat-card-title>
+            <mat-card-subtitle>{{ task.createTime }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p *ngIf="task.description">{{ task.description }}</p>
+            <p *ngIf="task.formKey" class="psc-task-form-required">{{ 'PSC.TASKS.FORM_REQUIRED' | translate }}</p>
+            <p *ngIf="task.assignee">{{ 'PSC.TASKS.ASSIGNEE' | translate }}: {{ task.assignee }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button *ngIf="!task.claimedByCurrentUser" mat-button [disabled]="processingTaskId === task.id"
+                    (click)="claimTask(task)">
+              {{ 'PSC.TASKS.CLAIM' | translate }}
+            </button>
+            <button
+              *ngIf="task.claimedByCurrentUser"
+              mat-raised-button
+              color="primary"
+              [disabled]="processingTaskId === task.id"
+              (click)="completeTask(task)"
+            >
+              {{ 'PSC.TASKS.COMPLETE' | translate }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</aca-page-layout>

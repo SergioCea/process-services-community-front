@@ -1,0 +1,68 @@
+@if (!item.children) {
+  <div class="aca-expansion-panel-item">
+    <button
+      acaActiveLink="aca-action-button--active"
+      [action]="item"
+      [attr.aria-label]="item.title | translate"
+      [id]="item.id"
+      [attr.data-automation-id]="item.id"
+      [attr.title]="item.description | translate"
+      mat-button
+      class="aca-action-button aca-full-width"
+    >
+      @if (item.icon) {
+        <adf-icon [value]="item.icon"/>
+      }
+      <span class="action-button__label">{{ item.title | translate }}</span>
+    </button>
+  </div>
+}
+
+@if (item.children && item.children.length) {
+  <mat-expansion-panel
+    class="aca-expansion-panel"
+    [expanded]="true"
+    [@.disabled]="true"
+  >
+    <mat-expansion-panel-header expandedHeight="32px" collapsedHeight="32px" class="aca-expansion-panel-header">
+      <mat-panel-title class="aca-expansion-panel-header-title">
+        <div class="aca-expansion-panel-item">
+          <span
+            [attr.aria-label]="item.title | translate"
+            [id]="item.id"
+            [attr.title]="item.description | translate"
+            [attr.data-automation-id]="item.id"
+            class="aca-action-button aca-full-width"
+          >
+            @if (item.icon) {
+              <adf-icon [value]="item.icon"/>
+            }
+            <span class="aca-action-button__label">{{ item.title | translate }}</span>
+          </span>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ul class="aca-expansion-panel-body" [attr.aria-label]="item.title | translate">
+      @for (child of item.children; track trackById($index, child)) {
+        <li class="aca-expansion-panel-item">
+          <button
+            acaActiveLink="aca-action-button--active"
+            [action]="child"
+            (actionClicked)="actionClicked.emit($event)"
+            [attr.aria-label]="child.title | translate"
+            [id]="child.id"
+            [attr.data-automation-id]="child.id"
+            [attr.title]="child.description | translate"
+            mat-button
+            class="aca-action-button aca-full-width"
+          >
+            @if (child.icon) {
+              <adf-icon [value]="child.icon"/>
+            }
+            <span class="aca-action-button__label">{{ child.title | translate }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </mat-expansion-panel>
+}

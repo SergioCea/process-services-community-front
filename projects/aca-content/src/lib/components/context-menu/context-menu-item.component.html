@@ -1,0 +1,27 @@
+<div class="aca-context-menu">
+  @switch (actionRef.type) {
+    @case ('menu') {
+      <button mat-menu-item [id]="actionRef.id" [matMenuTriggerFor]="childMenu">
+        <adf-icon [value]="actionRef.icon" class="app-context-menu-item--icon"/>
+        <span [attr.data-automation-id]="actionRef.id + '-label'">{{ actionRef.title | translate }}</span>
+      </button>
+      <mat-menu #childMenu="matMenu">
+        @for (child of actionRef.children; track trackByActionId($index, child)) {
+          <app-context-menu-item [actionRef]="child"/>
+        }
+      </mat-menu>
+    }
+    @case ('separator') {
+      <mat-divider aria-hidden="true"/>
+    }
+    @case ('custom') {
+      <adf-dynamic-component [data]="actionRef.data" [id]="actionRef.component"/>
+    }
+    @default {
+      <button mat-menu-item [id]="actionRef.id" (click)="runAction()">
+        <adf-icon [value]="actionRef.icon" class="app-context-menu-item--icon"/>
+        <span [attr.data-automation-id]="actionRef.id + '-label'">{{ actionRef.title | translate }}</span>
+      </button>
+    }
+  }
+</div>

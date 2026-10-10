@@ -1,0 +1,87 @@
+<form class="aca-rule-simple-condition__form" [formGroup]="form">
+  <mat-form-field class="aca-rule-simple-condition__form__field-input">
+    <mat-label>{{ 'ACA_FOLDER_RULES.RULE_DETAILS.LABEL.FIELD' | translate }}</mat-label>
+    <mat-select formControlName="field" data-automation-id="field-select"
+                (selectionChange)="onChangeField()">
+      @if (!isSelectedFieldKnown) {
+        <mat-option [value]="selectedField.name" data-automation-id="unknown-field-option">
+          {{ selectedField.label }}
+        </mat-option>
+      }
+      @for (field of fields; track field.name) {
+        <mat-option [value]="field.name">
+          {{ field.label | translate }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="aca-rule-simple-condition__form__field-input aca-rule-simple-condition__form__comparator-input"
+                  [class]="{ 'aca-hidden': isComparatorHidden }" data-automation-id="comparator-form-field">
+    <mat-label>{{ 'ACA_FOLDER_RULES.RULE_DETAILS.LABEL.COMPARATOR' | translate }}</mat-label>
+    <mat-select formControlName="comparator" data-automation-id="comparator-select">
+      @for (comparator of selectedFieldComparators; track comparator.name) {
+        <mat-option [value]="comparator.name">
+          {{ comparator.labels[this.selectedField?.type || 'equals'] | translate }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="aca-rule-simple-condition__form__field-input aca-rule-simple-condition__form__parameter-input">
+    <mat-label>{{ 'ACA_FOLDER_RULES.RULE_DETAILS.LABEL.VALUE' | translate }}</mat-label>
+    @switch (selectedField.type) {
+      @case ('mimeType') {
+        <mat-select formControlName="parameter" data-automation-id="simple-condition-value-select">
+          @for (mimeType of mimeTypes; track mimeType.value) {
+            <mat-option [value]="mimeType.value">
+              {{ mimeType.label }}
+            </mat-option>
+          }
+        </mat-select>
+      }
+      @case ('auto-complete') {
+        <input
+          matInput
+          [matAutocomplete]="auto"
+          formControlName="parameter"
+          (focusout)="autoSelectValidOption()"
+          data-automation-id="auto-complete-input-field"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          data-automation-id="folder-rule-auto-complete"
+          [autoActiveFirstOption]="true"
+          [autoSelectActiveOption]="true"
+          [displayWith]="autoCompleteDisplayFunction">
+          @if (showLoadingSpinner) {
+            <mat-option disabled>
+              <span class="aca-rule-simple-condition__auto-complete-loading-spinner">
+                <mat-progress-spinner
+                  mode="indeterminate"
+                  data-automation-id="auto-complete-loading-spinner"
+                  [diameter]="25"/>
+              </span>
+            </mat-option>
+          } @else {
+            @if (autoCompleteOptions?.length > 0) {
+              @for (option of autoCompleteOptions; track option.value) {
+                <mat-option [value]="option.value">
+                  {{ option.displayLabel }}
+                </mat-option>
+              }
+            } @else {
+              <mat-option disabled>
+                {{ 'ACA_FOLDER_RULES.AUTOCOMPLETE.NO_OPTIONS_FOUND' | translate }}
+              </mat-option>
+            }
+          }
+        </mat-autocomplete>
+      }
+      @default {
+        <input matInput placeholder="{{ 'ACA_FOLDER_RULES.RULE_DETAILS.PLACEHOLDER.VALUE' | translate }}" type="text"
+               formControlName="parameter" data-automation-id="value-input">
+      }
+    }
+  </mat-form-field>
+</form>

@@ -1,0 +1,80 @@
+
+@switch (type) {
+  @case ('button') {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [matMenuTriggerFor]="menu"
+      [disabled]="actionRef.disabled"
+      #matTrigger="matMenuTrigger"
+      >
+      @if (actionRef.title) {
+        <span>{{ actionRef.title | translate }}</span>
+      }
+    </button>
+  }
+  @case ('flat-button') {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-flat-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [matMenuTriggerFor]="menu"
+      [disabled]="actionRef.disabled"
+      #matTrigger="matMenuTrigger"
+      >
+      @if (actionRef.title) {
+        <span>{{ actionRef.title | translate }}</span>
+      }
+    </button>
+  }
+  @case ('stroked-button') {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-stroked-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [matMenuTriggerFor]="menu"
+      [disabled]="actionRef.disabled"
+      #matTrigger="matMenuTrigger"
+      >
+      @if (actionRef.title) {
+        <span>{{ actionRef.title | translate }}</span>
+      }
+    </button>
+  }
+  @default {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-icon-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [matMenuTriggerFor]="menu"
+      [disabled]="actionRef.disabled"
+      #matTrigger="matMenuTrigger"
+      >
+      @if (actionRef.icon) {
+        <adf-icon [value]="actionRef.icon" />
+      }
+    </button>
+  }
+}
+
+<mat-menu #menu="matMenu" [overlapTrigger]="false" [xPosition]="'before'">
+  @for (child of actionRef.children; track trackByActionId($index, child)) {
+    @switch (child.type) {
+      @case ('custom') {
+        <adf-dynamic-component [id]="child.component" [data]="child.data" />
+      }
+      @default {
+        <app-toolbar-menu-item [actionRef]="child" [menuId]="actionRef.id" />
+      }
+    }
+  }
+</mat-menu>

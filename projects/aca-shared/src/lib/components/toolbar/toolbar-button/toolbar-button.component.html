@@ -1,0 +1,49 @@
+
+@switch (data?.buttonType || type) {
+  @case ('icon-button') {
+    <button
+      [id]="actionRef.id"
+      mat-icon-button
+      [color]="color"
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [disabled]="actionRef.disabled"
+      (click)="runAction()"
+      >
+      <adf-icon [value]="actionRef.icon" />
+    </button>
+  }
+  @case ('flat-button') {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-flat-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [disabled]="actionRef.disabled"
+      (click)="runAction()"
+      >
+      @if (actionRef.title) {
+        <span>{{ actionRef.title | translate }}</span>
+      }
+    </button>
+  }
+  @case ('stroked-button') {
+    <button
+      [id]="actionRef.id"
+      [color]="data?.color || color"
+      mat-stroked-button
+      [attr.aria-label]="actionRef.description || actionRef.title | translate"
+      [attr.title]="actionRef.description || actionRef.title | translate"
+      [disabled]="actionRef.disabled"
+      (click)="runAction()"
+      >
+      @if (actionRef.title) {
+        <span>{{ actionRef.title | translate }}</span>
+      }
+    </button>
+  }
+  @case ('menu-item') {
+    <app-toolbar-menu-item [actionRef]="actionRef" />
+  }
+}
